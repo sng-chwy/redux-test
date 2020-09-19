@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux'
 
 import { getCurrentDir } from '../redux/selectors'
+import { setCurrentDir } from '../redux/actions'
 
 const FileLink = (props) => {
 	const { name, handleClick } = props;
@@ -33,6 +34,7 @@ const Directory = (props) => {
 	);
 };
 
-const mapStateToProps = state => { currentDir: getCurrentDir(state) };
+// Syntax matters lol just returning {} was giving an error
+const mapStateToProps = state => ({currentDir: getCurrentDir(state)});
 
-export default connect(mapStateToProps, null)(Directory);
+export default connect(mapStateToProps, { setCurrentDir })(Directory);
