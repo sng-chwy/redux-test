@@ -13,10 +13,10 @@ import { connect } from 'react-redux'
 
 import DirectoryBreadcrumb from './DirectoryBreadcrumb.js'
 import Directory from './Directory.js'
-import { addDirs, setCurrentDir } from '../redux/actions'
+import { addDirs, setCurrentDir, setRootDir } from '../redux/actions'
 
 const ActionsView = (props) => {
-	const { addDirs, setCurrentDir } = props;
+	const { addDirs, setCurrentDir, setRootDir } = props;
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -28,6 +28,7 @@ const ActionsView = (props) => {
 
 					// Get the root path and set it as the current dir for initialization
 					setCurrentDir(root);
+					setRootDir(root);
 
 					// Get the directories and save in the store
 					addDirs(directories);
@@ -40,7 +41,7 @@ const ActionsView = (props) => {
 					setIsLoading(false);
 				});
 		}
-	}, [isLoading, addDirs, setCurrentDir]);
+	}, [isLoading, addDirs, setCurrentDir, setRootDir]);
 
 	if (isLoading) {
 		return <CircularProgress />
@@ -69,4 +70,4 @@ const ActionsView = (props) => {
 }
 
 // Connect to the store and map a dispatcher to props
-export default connect(null, { addDirs, setCurrentDir })(ActionsView);
+export default connect(null, { addDirs, setCurrentDir, setRootDir })(ActionsView);
