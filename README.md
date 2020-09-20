@@ -14,12 +14,21 @@ The frontend is a React app.
 This component includes the nav bar to make things look nice, the breadcrumbs for navigatiton, the directory and file listings.
 Also initiates inital loading of the file directory data and sets the state of current directory and file tree.
 
+The actions that the ActionView takes on the Redux store are: setting directory state, setting current dir state, setting root dir state.
+It does not utilize any selectors.
+
 ##### Directory
 This component lists the files and directories in the current directory.
 Clicking on any of the directories will load the contents of that directory.
 
+The actions that the Directory takes on the Redux store are: setting current dir state.
+The selectors that the Directory uses are: get current dir, get root dir.
+
 ##### DirectoryBreadcrumb
 This component lists the directories in the current path. Clicking on any of the links will load the contents of that directory.
+
+The actions that the DirectoryBreadcrumb takes on the Redux store are: setting current dir state.
+The selectors that the DirectoryBreadcrumb uses are: get current dir path.
 
 ##### Things that would be cool to add
 Move files from one location to another
@@ -48,3 +57,6 @@ The actions.js file can be thought of as defining the setters API for the store.
 
 ##### Selectors
 The selectors.js file can be thought of as defining the getters API for the store. Each function accesses the store to return the requested global state.
+
+##### Connecting to the Store
+In order to either get or set the state within the store, the components on the UI have to use the connect method that React-Redux provides. The connect method accepts the setters and a mapping of labels to getters that the component requires from the store.
