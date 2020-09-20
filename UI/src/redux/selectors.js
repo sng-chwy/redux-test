@@ -4,6 +4,8 @@ export const getDirectoriesState = store => store.directories;
 
 export const getCurrentDirPath = store => getDirectoriesState(store) ? getDirectoriesState(store).currentDir : '';
 
+export const getRootDirPath = store => getDirectoriesState(store) ? getDirectoriesState(store).root : '';
+
 export const getAllDirs = store => getDirectoriesState(store) ? getDirectoriesState(store).allDirs : [];
 
 export const getDir = (store, dirPath) => getAllDirs(store).find(directory => directory.path === dirPath);

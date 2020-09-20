@@ -1,10 +1,11 @@
 // The store for directories. Defines initial state and how statte gets updated.
 
-import { ADD_DIRS, SET_CURRENT_DIR } from "../actionTypes";
+import { ADD_DIRS, SET_CURRENT_DIR, SET_ROOT_DIR } from "../actionTypes";
 
 const initialState = {
   allDirs: [],
-  currentDir: ""
+  currentDir: '',
+  root: ''
 };
 
 export default function(state = initialState, action) {
@@ -22,6 +23,13 @@ export default function(state = initialState, action) {
         ...state,
         currentDir: currentDir
       };
+    }
+    case SET_ROOT_DIR: {
+      const { rootDir } = action.payload;
+      return {
+        ...state,
+        root: rootDir
+      }
     }
     default:
       return state;
